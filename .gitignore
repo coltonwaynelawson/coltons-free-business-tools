@@ -1,0 +1,27 @@
+# Logs
+*.log
+
+# Cache
+*.pyc
+__pycache__/
+functions/__pycache__/
+
+# file-database
+file-database/
+
+# Sensitive data
+.secret/
+secrets.json
+
+# Helper code
+delete_files.ipynb
+
+# Virtual env
+venv/
+
+# Database files
+*.sqlite3
+*.sqlite
+*.sql
+*.db
+feedback.db

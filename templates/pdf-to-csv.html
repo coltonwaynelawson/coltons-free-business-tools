@@ -1,0 +1,113 @@
+{% extends "base.html" %} {% block title %}PDF to CSV Converter{% endblock %}
+
+<header><h1>PDF to CSV Converter</h1></header>
+
+{% block content %}
+
+<!-- Page title section -->
+<div class="container mt-5">
+  <div class="row justify-content-md-center">
+    <div class="col">
+      <div class="center-div">
+        <img src="static/icons/pdf-block.png" class="little-nav-logo" alt="pdf conversion tool" style="margin-right: 3px; width: 27px; height: 27px;"/> 
+        <i class="fa-solid fa-play little-nav-arrow" style="font-size: 15px;"></i>
+        <img src="static/icons/csv-block.png" class="little-nav-logo" alt="csv conversion tool" style="margin-right: 4px; width: 27px; height: 27px;"/>
+      </div>
+      <h1 class="page-title">PDF to CSV Converter</h1>
+    </div>
+  </div>
+
+  <!-- Upload form -->
+  <div class="row justify-content-md-center convert-form">
+    <div class="col-md-5">
+      <form method="POST" enctype="multipart/form-data">
+        <div class="input-group">
+          <div class="custom-file">
+            <label class="custom-file-label"><p id="p1">Choose file</p></label>
+            <input
+              type="file"
+              class="custom-file-input"
+              id="file"
+              name="file"
+              aria-describedby="inputGroupFileAddon04"
+              onchange="handleBrowse()"
+            />
+          </div>
+          <div class="input-group-append">
+            <button id="convert-button" class="btn btn-success" type="submit">Convert</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row justify-content-md-center message-container">
+    <div class="col-md-5 subtle-message-box">
+      <span class="subtle-message"
+        >Or just drag and drop a file anywhere on the page.</span
+      >
+    </div>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="row justify-content-md-center progress-container">
+    <div class="col-md-5">
+      <div class="progress">
+        <div
+          id="progress-bar"
+          class="progress-bar bg-success"
+          role="progressbar"
+          aria-valuenow="0"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          style="width: 0%"
+        ></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Download box loads hidden -->
+  <div id="download-container" class="row justify-content-md-center download-container d-none mt-4">
+    <div class="col-md-4 download-box">
+      <a id="download" href="{{ url_for('database_download_pdf_to_csv', filename=filename) }}" type="button" class="btn btn-success">Download {{ filename }}</a>
+    </div>
+  </div>
+
+  <!-- Tips and tricks section -->
+  <p class="mt-5">
+    <div class="row justify-content-md-center tips-header">
+       <div class="col center-block" style="text-align: center">
+           <a class="tog" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+              <span><i class="fa-solid fa-chevron-down chev"></i> <span class="tips">Tips & Tricks</span></span>
+           </a>
+       </div>
+    </div>
+  </p>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">
+      <div class="row justify-content-md-center tips-container">
+        <div class="col-sm">
+          <div class="tips-text">
+            <span class="num">1. </span>Improved accuracy can be achieved by converting smaller sections of the PDF data table at a time.
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="tips-text">
+            <span class="num">2. </span>Use PDFs with a simple layout. Complex data table layouts may not convert to CSV with 100% accuracy.
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="tips-text">
+            <span class="num">3. </span>You may need to manually edit your CSV file after conversion, especially if the data is in a complex format.
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="tips-text">
+            <span class="num">4. </span>Use text-based PDF files for conversion, not scanned documents or other document types.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
